@@ -40,7 +40,6 @@
           :key="menu.path"
         >
           <template v-slot:title>
-            <!--            <a-icon v-if="menu.meta.icon" :type="menu.meta.icon"/>-->
             <Icon v-if="menu.meta.icon" :icon="menu.meta.icon"></Icon>
             <span>{{ menu?.meta?.title }}</span>
           </template>
@@ -76,9 +75,11 @@ export default {
     // issue: https://github.com/vuejs/vue-next/issues/1747
     // reappear: https://jsbin.com/reyalagawo/edit?html,console,output
     const handleClickMenu = (item, e) => {
+      console.log('e ====>  ', e)
       if (!item) return
       const { key } = item
       const route = props.menuList.find(it => it.path === key)
+      console.log('route ===> ', route)
       const path = route?.path
       console.log('path ===> ', path)
       path && ctx.$router.push(path)

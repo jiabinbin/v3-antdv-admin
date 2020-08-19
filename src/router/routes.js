@@ -1,4 +1,5 @@
 import Main from '@/views/Main/Main'
+
 const routers = [
   {
     path: '/',
@@ -66,13 +67,21 @@ const routers = [
         },
         component: () => import('@/views/Page3/Page3')
       }, {
-        path: '/form-page',
-        name: 'formPage',
+        path: '/form-tpl',
+        name: 'formTpl',
         meta: {
-          title: '表单页',
+          title: '模板表单',
           icon: 'FormOutlined'
         },
         component: () => import('@/views/FormPage/CreateForm')
+      }, {
+        path: '/form-page/form-jsx',
+        name: 'formJsx',
+        meta: {
+          title: 'JSX表单',
+          icon: 'FormOutlined'
+        },
+        component: () => import('@/views/FormPage/FormJsx.js')
       }
     ]
   }

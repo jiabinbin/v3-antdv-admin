@@ -7,9 +7,9 @@
   resolved "https://registry.npm.taobao.org/@ant-design-vue/babel-helper-vue-transform-on/download/@ant-design-vue/babel-helper-vue-transform-on-1.0.1.tgz#d219d92f4e1fc5e7add211c347c7fa000518b623"
   integrity sha1-0hnZL04fxeet0hHDR8f6AAUYtiM=
 
-"@ant-design-vue/babel-plugin-jsx@^1.0.0-0":
+"@ant-design-vue/babel-plugin-jsx@^1.0.0-0", "@ant-design-vue/babel-plugin-jsx@^1.0.0-rc.1":
   version "1.0.0-rc.1"
-  resolved "https://registry.npm.taobao.org/@ant-design-vue/babel-plugin-jsx/download/@ant-design-vue/babel-plugin-jsx-1.0.0-rc.1.tgz#ae56cecbda9f08691bcf92dfe98e2416e77d758b"
+  resolved "https://r.cnpmjs.org/@ant-design-vue/babel-plugin-jsx/download/@ant-design-vue/babel-plugin-jsx-1.0.0-rc.1.tgz#ae56cecbda9f08691bcf92dfe98e2416e77d758b"
   integrity sha1-rlbOy9qfCGkbz5Lf6Y4kFud9dYs=
   dependencies:
     "@ant-design-vue/babel-helper-vue-transform-on" "^1.0.0"
