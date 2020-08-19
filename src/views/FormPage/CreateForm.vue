@@ -5,7 +5,6 @@
     <a-form
       :labelCol="layout"
       :model="formState"
-      @finish="onFinish"
       @submit="onSubmit"
       layout="inline"
       :rules="formRules"
@@ -69,7 +68,7 @@ export default defineComponent({
       field3: ''
     })
 
-    const formRules = reactive({
+    const formRules = markRaw({
       field1: [
         { required: true, message: '请输入' }
       ],
@@ -85,9 +84,8 @@ export default defineComponent({
       console.log(values)
     }
     const onSubmit = errorInfo => {
-      console.log('Failed:', errorInfo)
+      console.log(formState)
     }
-    console.log(formRules)
     return {
       ...state,
       formState,

@@ -2,7 +2,9 @@
   <component :is="icon"></component>
 </template>
 <script>
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'CusIcon',
   props: {
     icon: {
@@ -12,7 +14,7 @@ export default {
   },
   setup (props, context) {
   }
-}
+})
 </script>
 
 <style scoped>
