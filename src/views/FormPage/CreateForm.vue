@@ -4,34 +4,36 @@
   >
     <a-form
       :labelCol="layout"
-      @onFinish="onFinish"
-      @onFinishFailed="onFinishFailed"
+      :model="formState"
+      @finish="onFinish"
+      @submit="onSubmit"
       layout="inline"
+      :rules="formRules"
     >
       <a-form-item
         label="Field1"
-        name="filed1"
-        :rules="{ required: true, message: 'Please input Field1!' }"
+        name="field1"
       >
         <a-input
+          v-model:value="formState.field1"
           placeholder="请输入"
         ></a-input>
       </a-form-item>
       <a-form-item
         label="Field2"
-        name="filed2"
-        :rules="{ required: true, message: 'Please input Field2!' }"
+        name="field2"
       >
         <a-input
+          v-model:value="formState.field2"
           placeholder="请输入"
         ></a-input>
       </a-form-item>
       <a-form-item
         label="Field3"
-        name="filed3"
-        :rules="{ required: true, message: 'Please select Field2!' }"
+        name="field3"
       >
         <a-select
+          v-model:value="formState.field3"
           style="width: 120px"
           placeholder="请请选"
         >
@@ -47,9 +49,9 @@
 </template>
 
 <script>
-import { markRaw } from '@vue/reactivity'
+import { defineComponent, markRaw, reactive } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'CreateForm',
   setup (props, context) {
     // const { ctx } = getCurrentInstance()
@@ -61,20 +63,40 @@ export default {
       }
     })
 
+    const formState = reactive({
+      field1: '',
+      field2: '',
+      field3: ''
+    })
+
+    const formRules = reactive({
+      field1: [
+        { required: true, message: '请输入' }
+      ],
+      field2: [
+        { required: true, message: '请输入' }
+      ],
+      field3: [
+        { required: true, message: '请选择', trigger: 'change' }
+      ]
+    })
+
     const onFinish = values => {
       console.log(values)
     }
-    const onFinishFailed = errorInfo => {
+    const onSubmit = errorInfo => {
       console.log('Failed:', errorInfo)
     }
-
+    console.log(formRules)
     return {
       ...state,
+      formState,
+      formRules,
       onFinish,
-      onFinishFailed
+      onSubmit
     }
   }
-}
+})
 </script>
 
 <style scoped>
