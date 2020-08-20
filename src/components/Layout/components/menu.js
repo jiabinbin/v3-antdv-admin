@@ -53,11 +53,15 @@ export default defineComponent({
             ) : (menu.children && menu.children.length > 1) ? (
               <a-sub-menu
                 key={menu.path}
+                v-slots={{
+                  title: () => (
+                    <>
+                      {menu.meta.icon ? <Icon icon={menu.meta.icon}/> : null}
+                      <span>{menu.meta.title}</span>
+                    </>
+                  )
+                }}
               >
-                <template slot="title">
-                  {menu.meta.icon ? <Icon icon={menu.meta.icon}/> : null},
-                  <span>{menu.meta.title}</span>
-                </template>
                 <sub-menu menu-list={menu.children}></sub-menu>
               </a-sub-menu>
             ) : null

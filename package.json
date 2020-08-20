@@ -12,12 +12,11 @@
     "@ant-design/icons-vue": "^5.0.0",
     "ant-design-vue": "^2.0.0-beta.2",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0-0",
+    "vue": "^3.0.0-6",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
-    "@ant-design-vue/babel-plugin-jsx": "^1.0.0-rc.1",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",

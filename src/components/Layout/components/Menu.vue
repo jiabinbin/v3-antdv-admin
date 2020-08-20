@@ -2,7 +2,7 @@
   <a-menu
     theme="dark"
     mode="inline"
-    @click="(item) => { handleClickMenu(item, $event) }"
+    @click="handleClickMenu"
   >
     <!--    :open-keys="openKeys"-->
     <!--    :selectedKeys="selectedKeys"-->
@@ -51,9 +51,10 @@
 </template>
 
 <script>
-import { getCurrentInstance } from 'vue'
+import { getCurrentInstance, defineComponent } from 'vue'
 import Icon from '@/components/AppBaseComponents/Icon/CusIcon'
-export default {
+
+export default defineComponent({
   name: 'Menu',
   props: {
     menuList: {
@@ -66,11 +67,6 @@ export default {
   },
   setup (props, context) {
     const { ctx } = getCurrentInstance()
-    // const state = reactive({
-    //   openKeys: [],
-    //   selectedKeys: []
-    // })
-
     // Double Click bugs -- vue.js
     // issue: https://github.com/vuejs/vue-next/issues/1747
     // reappear: https://jsbin.com/reyalagawo/edit?html,console,output
@@ -91,7 +87,7 @@ export default {
       handleClickMenu
     }
   }
-}
+})
 </script>
 
 <style scoped>
