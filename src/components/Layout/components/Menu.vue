@@ -2,8 +2,8 @@
   <a-menu
     theme="dark"
     mode="inline"
-    v-model:openKeys="state.openKeys"
-    v-model:selectedKeys="state.selectedKeys"
+    v-model:openKeys="openKeys"
+    v-model:selectedKeys="selectedKeys"
     @click="handleClickMenu"
   >
     <template
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, watchEffect, onMounted } from 'vue'
+import { defineComponent, reactive, watchEffect, toRefs } from 'vue'
 import Icon from '@/components/AppBaseComponents/Icon/CusIcon'
 import SubMenu from '@/components/Layout/components/SubMenu'
 import { useRouter, useRoute } from 'vue-router'
@@ -58,55 +58,38 @@ export default defineComponent({
     Icon,
     SubMenu
   },
-  emits: {
-    titleClick: keys => {
-      return true
-    }
-  },
   setup (props, context) {
     // router
     const router = useRouter()
     const route = useRoute()
-    console.log(route)
-    console.log(router)
 
     // state
     const state = reactive({
       selectedKeys: [],
-      defaultOpenKeys: [],
-      openKeys: ['dashboard']
+      openKeys: []
     })
 
-    // state.defaultOpenKeys = [route.name]
-
-    // moutend
-    onMounted(() => {
-      // console.log(route.name)
-      // state.openKeys = [route.name]
-    })
-
+    // 跟据当前路径选中菜单
+    state.selectedKeys = [route.name]
     // menu click
     const handleClickMenu = (e) => {
       const { key } = e
-      state.selectKeys = [key]
-      console.log('key', key)
-      console.log(router)
+      console.log(key)
+      state.selectedKeys = [key]
       router.push({ name: key })
     }
 
     watchEffect(() => {
-      // console.log(state.selectKeys)
+      console.log(state.selectedKeys)
     })
 
     const titleClick = (openKeys) => {
-      // console.log(openKeys)
       const { key } = openKeys
       state.openKeys = [key]
     }
 
     return {
-      state,
-      // openChange,
+      ...toRefs(state),
       handleClickMenu,
       titleClick
     }

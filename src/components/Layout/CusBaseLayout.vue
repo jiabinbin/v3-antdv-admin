@@ -1,6 +1,11 @@
 <template>
   <a-layout class="layout">
-    <a-layout-sider collapsible v-model:collapsed="collapsed" :trigger="null" style="width: 256px;">
+    <a-layout-sider
+      collapsible
+      v-model:collapsed="collapsed"
+      :trigger="null"
+      style="width: 256px;border: 1px solid red;"
+    >
       <div class="logo"/>
       <MenuList
         :menu-list="menuList"
@@ -9,8 +14,8 @@
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
         <span class="trigger" @click="triggerCollapsed">
-          <MenuFoldOutlined v-if="!collapsed" />
-          <MenuUnfoldOutlined v-else />
+          <MenuFoldOutlined v-if="!collapsed"/>
+          <MenuUnfoldOutlined v-else/>
         </span>
       </a-layout-header>
       <a-layout-content

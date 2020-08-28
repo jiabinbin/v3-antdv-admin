@@ -1,4 +1,5 @@
 import Main from '@/views/Main/Main'
+import PublicRouterView from '@/components/PublicRouterView'
 
 const routers = [
   {
@@ -28,7 +29,7 @@ const routers = [
         path: '/create-page1',
         name: 'create-page1',
         meta: {
-          isHideInMenu: true,
+          isHideInMenu: false,
           title: 'createPage'
         },
         component: () => import('@/views/Page1/CreatePage1')
@@ -39,7 +40,7 @@ const routers = [
           title: 'page2',
           icon: 'AppleOutlined'
         },
-        // component: () => import('@/views/Page2/Page2'),
+        component: PublicRouterView,
         children: [
           {
             path: '/page2-1',
@@ -67,21 +68,30 @@ const routers = [
         },
         component: () => import('@/views/Page3/Page3')
       }, {
-        path: '/form-tpl',
-        name: 'formTpl',
+        path: '/form',
+        name: 'form',
         meta: {
-          title: '模板表单',
+          title: 'form',
           icon: 'FormOutlined'
         },
-        component: () => import('@/views/FormPage/CreateForm')
-      }, {
-        path: '/form-page/form-jsx',
-        name: 'formJsx',
-        meta: {
-          title: 'JSX表单',
-          icon: 'FormOutlined'
-        },
-        component: () => import('@/views/FormPage/FormJsx.js')
+        component: PublicRouterView,
+        children: [
+          {
+            path: '/form-tpl',
+            name: 'formTpl',
+            meta: {
+              title: '模板表单'
+            },
+            component: () => import('@/views/FormPage/CreateForm')
+          }, {
+            path: '/form-page/form-jsx',
+            name: 'formJsx',
+            meta: {
+              title: 'JSX表单'
+            },
+            component: () => import('@/views/FormPage/FormJsx.js')
+          }
+        ]
       }
     ]
   }
