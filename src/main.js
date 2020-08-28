@@ -6,9 +6,9 @@ import '@/plugins/icons'
 import app from '@/app'
 // import './antd-variables.less'
 // console.log(antd)
-
-app.use(store)
+app
   .use(router)
+  .use(store)
   .use(antd)
   .mount('#app')
 // console.log('app ===>  ', app)

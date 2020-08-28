@@ -2,12 +2,10 @@
   <a-menu
     theme="dark"
     mode="inline"
+    v-model:openKeys="state.openKeys"
+    v-model:selectedKeys="state.selectedKeys"
     @click="handleClickMenu"
   >
-    <!--    :open-keys="openKeys"-->
-    <!--    :selectedKeys="selectedKeys"-->
-    <!--    @openChange="openChange"-->
-    <!--    @click="handleClickMenu"-->
     <template
       v-for="menu in menuList"
     >
@@ -15,7 +13,7 @@
         v-if="(!menu.children || (menu.children && menu.children.length === 0))"
       >
         <a-menu-item
-          :key="menu.path"
+          :key="menu.name"
         >
           <Icon v-if="menu.meta.icon" :icon="menu.meta.icon"></Icon>
           <span>{{ menu?.meta?.title }}</span>
@@ -26,7 +24,7 @@
         v-if="menu.children && menu.children.length === 1"
       >
         <a-menu-item
-          :key="menu.path"
+          :key="menu.name"
         >
           <Icon v-if="menu.children[0].meta.icon" :icon="menu.children[0].meta.icon"></Icon>
           <span>{{ menu?.children[0]?.meta?.title }}</span>
@@ -36,23 +34,17 @@
       <template
         v-if="menu.children && menu.children.length > 1"
       >
-        <a-sub-menu
-          :key="menu.path"
-        >
-          <template v-slot:title>
-            <Icon v-if="menu.meta.icon" :icon="menu.meta.icon"></Icon>
-            <span>{{ menu?.meta?.title }}</span>
-          </template>
-          <Menu :menu-list="menu.children"></Menu>
-        </a-sub-menu>
+        <SubMenu :key="menu.name" :current-menu="menu" v-on:title-click="titleClick"></SubMenu>
       </template>
     </template>
   </a-menu>
 </template>
 
 <script>
-import { getCurrentInstance, defineComponent } from 'vue'
+import { defineComponent, reactive, watchEffect, onMounted } from 'vue'
 import Icon from '@/components/AppBaseComponents/Icon/CusIcon'
+import SubMenu from '@/components/Layout/components/SubMenu'
+import { useRouter, useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'Menu',
@@ -63,28 +55,59 @@ export default defineComponent({
     }
   },
   components: {
-    Icon
+    Icon,
+    SubMenu
+  },
+  emits: {
+    titleClick: keys => {
+      return true
+    }
   },
   setup (props, context) {
-    const { ctx } = getCurrentInstance()
-    // Double Click bugs -- vue.js
-    // issue: https://github.com/vuejs/vue-next/issues/1747
-    // reappear: https://jsbin.com/reyalagawo/edit?html,console,output
-    const handleClickMenu = (item, e) => {
-      console.log('e ====>  ', e)
-      if (!item) return
-      const { key } = item
-      const route = props.menuList.find(it => it.path === key)
-      console.log('route ===> ', route)
-      const path = route?.path
-      console.log('path ===> ', path)
-      path && ctx.$router.push(path)
+    // router
+    const router = useRouter()
+    const route = useRoute()
+    console.log(route)
+
+    // state
+    const state = reactive({
+      selectedKeys: [],
+      defaultOpenKeys: [],
+      openKeys: ['dashboard']
+    })
+
+    // state.defaultOpenKeys = [route.name]
+
+    // moutend
+    onMounted(() => {
+      // console.log(route.name)
+      // state.openKeys = [route.name]
+    })
+
+    // menu click
+    const handleClickMenu = (e) => {
+      const { key } = e
+      state.selectKeys = [key]
+      console.log('key', key)
+      console.log(router)
+      router.push({ name: key })
+    }
+
+    watchEffect(() => {
+      // console.log(state.selectKeys)
+    })
+
+    const titleClick = (openKeys) => {
+      // console.log(openKeys)
+      const { key } = openKeys
+      state.openKeys = [key]
     }
 
     return {
-      // ...state,
+      state,
       // openChange,
-      handleClickMenu
+      handleClickMenu,
+      titleClick
     }
   }
 })

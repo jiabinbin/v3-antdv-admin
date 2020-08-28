@@ -43,7 +43,7 @@ const routers = [
         children: [
           {
             path: '/page2-1',
-            name: 'page2-1',
+            name: 'page2_1',
             meta: {
               title: 'page2-1',
               icon: 'WindowsOutlined'
@@ -51,7 +51,7 @@ const routers = [
             component: () => import('@/views/Page2/ChildPage/C1')
           }, {
             path: '/page2-2',
-            name: 'page2-2',
+            name: 'page2_2',
             meta: {
               title: 'page2-2'
             },
