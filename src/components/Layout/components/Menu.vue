@@ -68,6 +68,7 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     console.log(route)
+    console.log(router)
 
     // state
     const state = reactive({
