@@ -29,7 +29,7 @@ const routers = [
         path: '/create-page1',
         name: 'create-page1',
         meta: {
-          isHideInMenu: false,
+          isHideInMenu: true,
           title: 'createPage'
         },
         component: () => import('@/views/Page1/CreatePage1')
@@ -49,7 +49,27 @@ const routers = [
               title: 'page2-1',
               icon: 'WindowsOutlined'
             },
-            component: () => import('@/views/Page2/ChildPage/C1')
+            component: PublicRouterView,
+            children: [
+              {
+                path: '/page2-1-a',
+                name: 'page2_1_a',
+                meta: {
+                  title: 'page2-1-a',
+                  icon: 'WindowsOutlined'
+                },
+                component: () => import('@/views/Page2/ChildPage/C1')
+              },
+              {
+                path: '/page2-1-b',
+                name: 'page2_1_b',
+                meta: {
+                  title: 'page2-1-b',
+                  icon: 'WindowsOutlined'
+                },
+                component: () => import('@/views/Page2/ChildPage/C2')
+              }
+            ]
           }, {
             path: '/page2-2',
             name: 'page2_2',
