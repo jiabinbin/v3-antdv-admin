@@ -62,3 +62,19 @@ export const getMenuList = (frontMenuList, backMenuList) => {
   }
   return menuList
 }
+
+export const getParentRouteName = (currentRouteName, menuList) => {
+  const getArray = (currentRouteName, children, record = []) => {
+    return children.reduce((result, { name, children: innerChildren }) => {
+      if (name === currentRouteName) {
+        return [...record, currentRouteName]
+      }
+      if (innerChildren) {
+        return [...result, ...getArray(currentRouteName, innerChildren, [...record, name])]
+      }
+      return result
+    }, [])
+  }
+  const result = getArray(currentRouteName, menuList)
+  return result
+}

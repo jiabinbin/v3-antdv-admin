@@ -30,10 +30,8 @@
 <script>
 import { useBoolean } from '@/hooks/useBoolean/useBoolean'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
-import { watchEffect, computed } from 'vue'
+import { computed } from 'vue'
 import MenuList from './components/Menu.vue'
-// import MenuList from './components/menu.js'
-// import MenuList from './components/TestMenu'
 import { useStore } from 'vuex'
 
 export default {
@@ -52,9 +50,6 @@ export default {
     // const menuList = useState('app', 'menuList')
     const store = useStore()
     const menuList = computed(() => store.state.app.menuList)
-    watchEffect(() => {
-      // console.log(collapsed)
-    })
     return {
       menuList,
       collapsed,

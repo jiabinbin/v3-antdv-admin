@@ -41,10 +41,11 @@
 </template>
 
 <script>
-import { defineComponent, reactive, watchEffect, toRefs } from 'vue'
+import { defineComponent, reactive, toRefs, watch, computed } from 'vue'
 import Icon from '@/components/AppBaseComponents/Icon/CusIcon'
 import SubMenu from '@/components/Layout/components/SubMenu'
 import { useRouter, useRoute } from 'vue-router'
+import { getParentRouteName } from '@/utils/tools'
 
 export default defineComponent({
   name: 'Menu',
@@ -62,6 +63,11 @@ export default defineComponent({
     // router
     const router = useRouter()
     const route = useRoute()
+    const routeState = reactive({
+      routeName: computed(() => {
+        return route.name
+      })
+    })
 
     // state
     const state = reactive({
@@ -69,19 +75,27 @@ export default defineComponent({
       openKeys: []
     })
 
-    // 跟据当前路径选中菜单
-    state.selectedKeys = [route.name]
+    // 菜单
+    // 设置打开的菜单key
+    const setMenuOpenKes = keys => {
+      state.openKeys = keys
+    }
+    // 跟据当前路径打开子菜单
+    // 监听路由变化
+    watch(routeState, (p) => {
+      const { routeName } = p
+      state.selectedKeys = [routeName]
+      const openKey = getParentRouteName(routeName, props.menuList)
+      setMenuOpenKes(openKey)
+    }, {
+      immediate: true
+    })
+
     // menu click
     const handleClickMenu = (e) => {
       const { key } = e
-      console.log(key)
-      state.selectedKeys = [key]
       router.push({ name: key })
     }
-
-    watchEffect(() => {
-      console.log(state.selectedKeys)
-    })
 
     const titleClick = (openKeys) => {
       const { key } = openKeys
