@@ -4,9 +4,11 @@
       collapsible
       v-model:collapsed="collapsed"
       :trigger="null"
+      width="256"
     >
       <div class="logo"/>
       <MenuList
+        ref="menuRef"
         :menu-list="menuList"
       />
     </a-layout-sider>
@@ -28,8 +30,7 @@
 
 <script>
 import { useBoolean } from '@/hooks/useBoolean/useBoolean'
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import MenuList from './components/Menu.vue'
 import { useStore } from 'vuex'
 
@@ -37,20 +38,23 @@ export default {
   name: 'CusBaseLayout',
   components: {
     // MenuList: () => import('./components/menu.js')
-    MenuList,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined
+    MenuList
     // ALayout: Layout
   },
   setup (props, context) {
+    // 菜单 ref
+    const menuRef = ref(null)
+    const closeMenu = value => {
+      menuRef.value.setOpenKeysByBoolean(value)
+    }
     // collapsed
-    const { boolean: collapsed, triggerBoolean: triggerCollapsed } = useBoolean()
-    // 菜单
-    // const menuList = useState('app', 'menuList')
+    // 之所以加个回调，因为得先得纵向收起展开的菜单之后，再横向收起。如果反过来了，就会闪一下展开的菜单！
+    const { boolean: collapsed, triggerBoolean: triggerCollapsed } = useBoolean(closeMenu)
     const store = useStore()
     const menuList = computed(() => store.state.app.menuList)
     return {
       menuList,
+      menuRef,
       collapsed,
       triggerCollapsed
     }

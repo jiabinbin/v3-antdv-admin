@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, toRefs, watch, computed } from 'vue'
+import { defineComponent, reactive, toRefs, watch, computed, toRef } from 'vue'
 import Icon from '@/components/AppBaseComponents/Icon/CusIcon'
 import SubMenu from '@/components/Layout/components/SubMenu'
 import { useRouter, useRoute } from 'vue-router'
@@ -75,6 +75,17 @@ export default defineComponent({
       openKeys: []
     })
 
+    // 菜单收起展开时
+    const collapsed = toRef(props, 'collapsed')
+    watch(collapsed, (p) => {
+      if (p) {
+        setMenuOpenKes([])
+      } else {
+        const openKey = getParentRouteName(routeState.routeName, props.menuList)
+        setMenuOpenKes(openKey)
+      }
+    })
+
     // 菜单
     // 设置打开的菜单key
     const setMenuOpenKes = keys => {
@@ -102,10 +113,20 @@ export default defineComponent({
       state.openKeys = [key]
     }
 
+    const setOpenKeysByBoolean = value => {
+      if (!value) {
+        setMenuOpenKes([])
+      } else {
+        const openKey = getParentRouteName(routeState.routeName, props.menuList)
+        setMenuOpenKes(openKey)
+      }
+    }
+
     return {
       ...toRefs(state),
       handleClickMenu,
-      titleClick
+      titleClick,
+      setOpenKeysByBoolean
     }
   }
 })
