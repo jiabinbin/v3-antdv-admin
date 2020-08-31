@@ -4,7 +4,6 @@
       collapsible
       v-model:collapsed="collapsed"
       :trigger="null"
-      width="256"
     >
       <div class="logo"/>
       <MenuList
