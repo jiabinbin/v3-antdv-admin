@@ -11,6 +11,7 @@ export const matchMenu = (menuList) => {
       const matchChildren = (children && children.length !== 0) ? matchMenu(children) : null
       result.push({
         ...it,
+        breadcrumbName: it.name,
         key: matchChildren ? `sub-${SubMenuKey++}` : AntMenuKey++,
         children: matchChildren
       })

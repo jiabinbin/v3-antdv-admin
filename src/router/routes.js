@@ -16,7 +16,7 @@ const routers = [
           // icon: 'dashboard'
           icon: 'DashboardOutlined'
         },
-        component: () => import('@/views/Dashboard')
+        component: () => import(/* webpackChunkName: "dbpage" */'@/views/Dashboard')
       }, {
         path: '/page1',
         name: 'page1',
@@ -58,7 +58,7 @@ const routers = [
                   title: 'page2-1-a',
                   icon: 'WindowsOutlined'
                 },
-                component: () => import('@/views/Page2/ChildPage/C1')
+                component: () => import(/* webpackChunkName: "p21a" */'@/views/Page2/ChildPage/C1')
               },
               {
                 path: '/page2-1-b',
@@ -67,7 +67,7 @@ const routers = [
                   title: 'page2-1-b',
                   icon: 'WindowsOutlined'
                 },
-                component: () => import('@/views/Page2/ChildPage/C2')
+                component: () => import(/* webpackChunkName: "p21b" */'@/views/Page2/ChildPage/C2')
               }
             ]
           }, {

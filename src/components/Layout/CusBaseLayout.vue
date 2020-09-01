@@ -19,6 +19,11 @@
           <MenuUnfoldOutlined v-else/>
         </span>
       </a-layout-header>
+      <a-page-header
+        title="Title"
+        :breadcrumb="{ routes: menuList }"
+      >
+      </a-page-header>
       <a-layout-content
         :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
       >
