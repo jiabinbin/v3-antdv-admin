@@ -19,11 +19,13 @@
           <MenuUnfoldOutlined v-else/>
         </span>
       </a-layout-header>
-      <a-page-header
+      <CusPageHeader
         title="Title"
-        :breadcrumb="{ routes: menuList }"
+        :breadcrumb="{
+          routes: menuList,
+         }"
       >
-      </a-page-header>
+      </CusPageHeader>
       <a-layout-content
         :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
       >
@@ -38,12 +40,14 @@ import { useBoolean } from '@/hooks/useBoolean/useBoolean'
 import { computed, ref } from 'vue'
 import MenuList from './components/Menu.vue'
 import { useStore } from 'vuex'
+import CusPageHeader from './components/PageHeader'
 
 export default {
   name: 'CusBaseLayout',
   components: {
     // MenuList: () => import('./components/menu.js')
-    MenuList
+    MenuList,
+    CusPageHeader
     // ALayout: Layout
   },
   setup (props, context) {
