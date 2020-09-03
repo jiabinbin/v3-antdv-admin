@@ -13,20 +13,13 @@
       />
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
+      <a-layout-header style="background: #fff; padding: 0;box-shadow: 0 1px 4px rgba(0,21,41,.08)">
         <span class="trigger" @click="triggerCollapsed">
           <MenuFoldOutlined v-if="!collapsed"/>
           <MenuUnfoldOutlined v-else/>
         </span>
       </a-layout-header>
-      <CusPageHeader
-        title="Title"
-        :menuList="menuList"
-      >
-      </CusPageHeader>
-      <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
+      <a-layout-content>
         <router-view/>
       </a-layout-content>
     </a-layout>
@@ -38,14 +31,14 @@ import { useBoolean } from '@/hooks/useBoolean/useBoolean'
 import { computed, ref } from 'vue'
 import MenuList from './components/Menu.vue'
 import { useStore } from 'vuex'
-import CusPageHeader from './components/PageHeader'
+// import PageWrapper from './components/PageWrapper/PageWrapper'
 
 export default {
   name: 'CusBaseLayout',
   components: {
     // MenuList: () => import('./components/menu.js')
-    MenuList,
-    CusPageHeader
+    MenuList
+    // PageWrapper
     // ALayout: Layout
   },
   setup (props, context) {
