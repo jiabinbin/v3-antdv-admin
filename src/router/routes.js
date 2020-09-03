@@ -104,7 +104,7 @@ const routers = [
             },
             component: () => import('@/views/FormPage/CreateForm')
           }, {
-            path: '/form-page/form-jsx',
+            path: '/form-jsx',
             name: 'formJsx',
             meta: {
               title: 'JSX表单'

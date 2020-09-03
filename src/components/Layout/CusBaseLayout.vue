@@ -21,9 +21,7 @@
       </a-layout-header>
       <CusPageHeader
         title="Title"
-        :breadcrumb="{
-          routes: menuList,
-         }"
+        :menuList="menuList"
       >
       </CusPageHeader>
       <a-layout-content

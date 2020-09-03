@@ -1,18 +1,14 @@
 <template>
-  <a-breadcrumb class="breadcrumb">
-    <template
-      v-for="(it, id) in breadcrumbList"
-      :key="id"
-    >
-      <a-breadcrumb-item>
-        {{it.meta.title}}
-      </a-breadcrumb-item>
-    </template>
+  <a-breadcrumb>
+    <a-breadcrumb-item v-for="(it, id) in breadcrumbList" :key="id">
+      {{ it.meta.title }}
+    </a-breadcrumb-item>
   </a-breadcrumb>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+
 export default defineComponent({
   props: {
     breadcrumbList: {
@@ -22,7 +18,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped lang="less">
-
-</style>

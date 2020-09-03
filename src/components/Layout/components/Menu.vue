@@ -112,7 +112,7 @@ export default defineComponent({
       const { key } = openKeys
       state.openKeys = [key]
     }
-
+    // 收起时openKeys = []， 展开始重新获取
     const setOpenKeysByBoolean = value => {
       if (!value) {
         setMenuOpenKes([])

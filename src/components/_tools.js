@@ -20,3 +20,23 @@ export const getDefaultProps = (comProps, curProps) => {
   }, {})
   return props
 }
+
+export const getParentRoute = (routePath, menuList) => {
+  const getArray = (routePath, children, record = []) => {
+    return children.reduce((result, cur) => {
+      if (cur.path === routePath) {
+        return [...record, {
+          ...cur
+        }]
+      }
+      if (cur.children) {
+        return [...result, ...getArray(routePath, cur.children, [...record, {
+          ...cur
+        }])]
+      }
+      return result
+    }, [])
+  }
+  const result = getArray(routePath, menuList)
+  return result
+}
