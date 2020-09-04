@@ -1,5 +1,5 @@
 <template>
-  <div>create page1</div>
+  <div>跳出五行外，不在菜单中：）</div>
 </template>
 
 <script>
