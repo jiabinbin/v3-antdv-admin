@@ -40,3 +40,6 @@ export const getParentRoute = (routePath, menuList) => {
   const result = getArray(routePath, menuList)
   return result
 }
+export const layoutContentWidth = (contentType) => {
+  return contentType !== 'Fluid'
+}

@@ -37,64 +37,66 @@ export default defineComponent({
     }
 
     return () => (
-      <a-card
-        title="JSX Form"
-      >
-        <a-form
-          model={formState}
-          rules={formRules}
-          onSubmit={onSubmit}
+      <PageWrapper>
+        <a-card
+          title="JSX Form"
         >
-          <a-form-item
-            label="UserName"
-            name="userName"
+          <a-form
+            model={formState}
+            rules={formRules}
+            onSubmit={onSubmit}
           >
-            <a-input
-              placeholder="please input UserName"
-              v-model={[formState.userName, 'value']}
-            ></a-input>
-          </a-form-item>
-          <a-form-item
-            label="Password"
-            name="password"
-          >
-            <a-input-password
-              placeholder="please input Password"
-              v-model={[formState.password, 'value']}
-            ></a-input-password>
-          </a-form-item>
-          <a-form-item
-            label="Email"
-            name="email"
-          >
-            <a-input
-              placeholder="please input Email"
-              v-model={[formState.email, 'value']}
-            ></a-input>
-          </a-form-item>
-          <a-form-item
-            label="QQ"
-            name="qq"
-          >
-            <a-input
-              placeholder="please input QQ"
-              v-model={[formState.qq, 'value']}
-            ></a-input>
-          </a-form-item>
-          <a-form-item
-            label="Mobile"
-            name="mobile"
-          >
-            <a-input
-              placeholder="please input Mobile"
-              v-model={[formState.mobile, 'value']}
-            ></a-input>
-          </a-form-item>
-          <a-form-item>
-            <a-button type="primary" htmlType="submit">提交</a-button>
-          </a-form-item>
-        </a-form>
-      </a-card>
+            <a-form-item
+              label="UserName"
+              name="userName"
+            >
+              <a-input
+                placeholder="please input UserName"
+                v-model={[formState.userName, 'value']}
+              ></a-input>
+            </a-form-item>
+            <a-form-item
+              label="Password"
+              name="password"
+            >
+              <a-input-password
+                placeholder="please input Password"
+                v-model={[formState.password, 'value']}
+              ></a-input-password>
+            </a-form-item>
+            <a-form-item
+              label="Email"
+              name="email"
+            >
+              <a-input
+                placeholder="please input Email"
+                v-model={[formState.email, 'value']}
+              ></a-input>
+            </a-form-item>
+            <a-form-item
+              label="QQ"
+              name="qq"
+            >
+              <a-input
+                placeholder="please input QQ"
+                v-model={[formState.qq, 'value']}
+              ></a-input>
+            </a-form-item>
+            <a-form-item
+              label="Mobile"
+              name="mobile"
+            >
+              <a-input
+                placeholder="please input Mobile"
+                v-model={[formState.mobile, 'value']}
+              ></a-input>
+            </a-form-item>
+            <a-form-item>
+              <a-button type="primary" htmlType="submit">提交</a-button>
+            </a-form-item>
+          </a-form>
+        </a-card>
+      </PageWrapper>
     )
   }
 })

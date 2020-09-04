@@ -1,4 +1,3 @@
-<script>
 import { defineComponent, reactive, watch } from 'vue'
 import PageHeader from 'ant-design-vue/es/page-header/index'
 import { getParentRoute } from '@/components/_tools'
@@ -13,7 +12,8 @@ export default defineComponent({
     menuList: {
       type: Array,
       required: true
-    }
+    },
+    contentExtra: {}
   }),
   components: {
     Breadcrumb
@@ -39,17 +39,28 @@ export default defineComponent({
     }, {
       immediate: true
     })
+
+    // contentExtra slots
+    const { contentExtra, footer } = slots
+    // 如果有footer的slots去掉padding-bottom, 如是没有就加padding-bottom
+    const clazz = footer ? styles['page-header-no-bottom-padding'] : styles['page-header-padding']
     return () => (
-      <div class={styles['cus-page-header']}>
+      <div class={clazz}>
         <Breadcrumb breadcrumbList={state.breadcrumbList}></Breadcrumb>
         <a-page-header
+          v-slots={
+            slots
+          }
           {...state.newProps}
           class={styles['no-padding-ant-page-header']}
-          v-slots={slots}
         >
+          {
+            contentExtra ? contentExtra() : (
+              <div>{propsState.contentExtra}</div>
+            )
+          }
         </a-page-header>
       </div>
     )
   }
 })
-</script>

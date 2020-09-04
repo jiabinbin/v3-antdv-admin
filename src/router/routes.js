@@ -12,78 +12,78 @@ const routers = [
         path: '/dashboard',
         name: 'dashboard',
         meta: {
-          title: 'Dashboard',
+          title: '仪表盘',
           // icon: 'dashboard'
           icon: 'DashboardOutlined'
         },
         component: () => import(/* webpackChunkName: "dbpage" */'@/views/Dashboard')
       }, {
-        path: '/page1',
-        name: 'page1',
+        path: '/single-page',
+        name: 'singlePage',
         meta: {
           icon: 'AndroidFilled',
-          title: 'page1'
+          title: '单页面'
         },
         component: () => import('@/views/Page1/Page1')
       }, {
-        path: '/create-page1',
-        name: 'create-page1',
+        path: '/hide-menu-page',
+        name: 'hideMenuPage',
         meta: {
           isHideInMenu: true,
-          title: 'createPage'
+          title: '不在菜单中显示的页面'
         },
         component: () => import('@/views/Page1/CreatePage1')
       }, {
-        path: '/page2',
-        name: 'page2',
+        path: '/level-page',
+        name: 'list',
         meta: {
-          title: 'page2',
+          title: '多级菜单',
           icon: 'AppleOutlined'
         },
         component: PublicRouterView,
         children: [
           {
-            path: '/page2-1',
-            name: 'page2_1',
+            path: '/level-1',
+            name: 'level1',
             meta: {
-              title: 'page2-1',
+              title: '二级菜单(含子菜单)',
               icon: 'WindowsOutlined'
             },
             component: PublicRouterView,
             children: [
               {
-                path: '/page2-1-a',
-                name: 'page2_1_a',
+                path: '/level-1-1',
+                name: 'level11',
                 meta: {
-                  title: 'page2-1-a',
+                  title: '二一级菜单',
                   icon: 'WindowsOutlined'
                 },
                 component: () => import(/* webpackChunkName: "p21a" */'@/views/Page2/ChildPage/C1')
               },
               {
-                path: '/page2-1-b',
-                name: 'page2_1_b',
+                path: '/level-1-2',
+                name: 'level12',
                 meta: {
-                  title: 'page2-1-b',
+                  title: '二二级菜单',
                   icon: 'WindowsOutlined'
                 },
                 component: () => import(/* webpackChunkName: "p21b" */'@/views/Page2/ChildPage/C2')
               }
             ]
           }, {
-            path: '/page2-2',
-            name: 'page2_2',
+            path: '/level-2',
+            name: 'level2',
             meta: {
-              title: 'page2-2'
+              title: '二级菜单(无子菜单)'
             },
             component: () => import('@/views/Page2/ChildPage/C2')
           }
         ]
       }, {
-        path: '/page3',
-        name: 'page3',
+        path: '/other-single',
+        name: 'otherSingle',
         meta: {
-          title: 'page3',
+          title: '另一个单页',
           icon: 'ChromeOutlined'
         },
         component: () => import('@/views/Page3/Page3')
@@ -91,7 +91,7 @@ const routers = [
         path: '/form',
         name: 'form',
         meta: {
-          title: 'form',
+          title: '表单页',
           icon: 'FormOutlined'
         },
         component: PublicRouterView,

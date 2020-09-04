@@ -1,5 +1,10 @@
 <template>
-  <div>p2 - c1</div>
+  <PageWrapper
+  >
+    <a-card>
+      二一级页
+    </a-card>
+  </PageWrapper>
 </template>
 
 <script>
