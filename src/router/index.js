@@ -10,13 +10,14 @@ const router = createRouter({
   routes
 })
 
-const token = ''
+const token = '2323'
 
 router.beforeEach((to, from, next) => {
   Nprogress.start()
   if (!token && to.name !== 'login') {
-    Nprogress.done()
     next({ name: 'login' })
+  } else if (token && to.name === 'login') {
+    next({ name: 'dashboard' })
   } else {
     next()
   }
