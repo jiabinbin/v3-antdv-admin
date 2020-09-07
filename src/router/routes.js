@@ -1,7 +1,7 @@
 import Main from '@/views/Main/Main'
 import PublicRouterView from '@/components/PublicRouterView'
 
-const routers = [
+const sysRoutes = [
   {
     path: '/',
     name: 'root',
@@ -117,4 +117,15 @@ const routers = [
   }
 ]
 
-export default routers
+const baseRouters = [
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      title: '登录'
+    },
+    component: () => import(/* webpackChunkName: "login" */'@/views/Login/Login')
+  }
+]
+
+export default [...sysRoutes, ...baseRouters]
