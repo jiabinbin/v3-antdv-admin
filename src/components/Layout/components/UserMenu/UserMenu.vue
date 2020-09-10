@@ -29,6 +29,13 @@
                 <span class="dropdown-menu">退出登录</span>
               </a>
             </a-menu-item>
+            <a-menu-divider />
+            <a-menu-item key="4">
+              <a href="https://github.com/jiabinbin/v3-antdv-admin" target="_blank">
+                <GithubOutlined />
+                <span class="dropdown-menu">GitHub</span>
+              </a>
+            </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
