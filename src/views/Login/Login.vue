@@ -10,7 +10,7 @@
     >
       <div class="user-login-title">
         <h1>Vue3 AntdV2 Admin</h1>
-        <p>基于vue3 antdv2 composition-api的后台管理系统</p>
+        <p>基于vue3(composition-api) Antdv2的后台管理系统</p>
       </div>
       <a-form-item
         name="username"
