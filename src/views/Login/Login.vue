@@ -10,7 +10,7 @@
     >
       <div class="user-login-title">
         <h1>Vue3 AntdV2 Admin</h1>
-        <p>使用vue3 antdv2 composition-api的后台管理系统</p>
+        <p>基于vue3 antdv2 composition-api的后台管理系统</p>
       </div>
       <a-form-item
         name="username"
@@ -56,14 +56,14 @@
 </template>
 
 <script>
-import { markRaw, reactive, ref, toRefs, defineComponent, getCurrentInstance, computed } from 'vue'
+import { markRaw, reactive, ref, toRefs, defineComponent, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { message as Message } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'Login',
   setup (props, context) {
-    const { ctx } = getCurrentInstance()
     const store = useStore()
     const router = useRouter()
 
@@ -101,7 +101,7 @@ export default defineComponent({
       try {
         const { success, message } = await store.dispatch('app/login', values)
         if (!success) {
-          ctx.$message.error(message)
+          Message.error(message)
         } else {
           await router.push({ name: 'root' })
         }

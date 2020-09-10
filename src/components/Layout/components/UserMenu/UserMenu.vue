@@ -4,7 +4,7 @@
       <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
           <UserOutlined/>
-          <span style="margin-left: 6px;">{{ userInfo.name || userInfo.mobile || 'Admin' }}</span>
+          <span style="margin-left: 6px;">{{ userInfo.username || 'user_name' }}</span>
         </span>
         <template
           v-slot:overlay
@@ -37,23 +37,18 @@
 </template>
 
 <script>
-import { reactive, toRefs, getCurrentInstance } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
-
+import { Modal } from 'ant-design-vue'
 export default {
   name: 'UserMenu',
   setup (props, context) {
     const store = useStore()
     const router = useRouter()
-    const state = reactive({
-      userInfo: {
-        name: 'Admin'
-      }
-    })
-    const { ctx } = getCurrentInstance()
+    const userInfo = computed(() => store.getters['app/userInfo'])
     const handleLogout = () => {
-      ctx.$confirm({
+      Modal.confirm({
         title: '提示',
         content: '真的要注销登录吗 ?',
         onOk: async () => {
@@ -65,7 +60,7 @@ export default {
       })
     }
     return {
-      ...toRefs(state),
+      userInfo,
       handleLogout
     }
   }
