@@ -1,10 +1,10 @@
 <template>
-  <div>跳出五行外，不在菜单中：）</div>
+  <p>404 error page</p>
 </template>
 
 <script>
 export default {
-  name: 'CreatePage1'
+  name: '404'
 }
 </script>
 

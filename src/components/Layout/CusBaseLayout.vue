@@ -14,12 +14,10 @@
       />
     </a-layout-sider>
     <a-layout class="layout-content">
-      <a-layout-header class="layout-header">
-        <span class="trigger" @click="triggerCollapsed">
-          <MenuFoldOutlined v-if="!collapsed"/>
-          <MenuUnfoldOutlined v-else/>
-        </span>
-      </a-layout-header>
+      <Header
+        :collapsed="collapsed"
+        :collapsedClick="triggerCollapsed"
+      ></Header>
       <a-layout-content>
         <router-view/>
       </a-layout-content>
@@ -35,15 +33,13 @@ import { useBoolean } from '@/hooks/useBoolean/useBoolean'
 import { computed, ref } from 'vue'
 import MenuList from './components/Menu.vue'
 import { useStore } from 'vuex'
-// import PageWrapper from './components/PageWrapper/PageWrapper'
+import Header from '@/components/Layout/components/Header'
 
 export default {
   name: 'CusBaseLayout',
   components: {
-    // MenuList: () => import('./components/menu.js')
-    MenuList
-    // PageWrapper
-    // ALayout: Layout
+    MenuList,
+    Header
   },
   setup (props, context) {
     // 菜单 ref
@@ -83,24 +79,6 @@ export default {
     min-height: 100vh;
     width: 100%;
     //background: #ffffff;
-    .layout-header {
-      background: #fff;
-      padding: 0;
-      box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-      z-index: 9;
-
-      .trigger {
-        font-size: 18px;
-        line-height: 64px;
-        padding: 0 24px;
-        cursor: pointer;
-        transition: color 0.3s;
-
-        &:hover {
-          color: #1890ff;
-        }
-      }
-    }
   }
 }
 </style>

@@ -1,15 +1,12 @@
 <template>
-  <PageWrapper
-  >
-    <a-card>
-      不在菜单中展示的页面：）
-    </a-card>
+  <PageWrapper>
+    <a-card title="这是一个单页"></a-card>
   </PageWrapper>
 </template>
 
 <script>
 export default {
-  name: 'Page1'
+  name: 'SinglePage'
 }
 </script>
 

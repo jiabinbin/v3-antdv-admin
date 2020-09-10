@@ -1,15 +1,12 @@
 <template>
-  <PageWrapper
-  >
-    <a-card>
-      二二级页
-    </a-card>
+  <PageWrapper>
+    <a-card title="La1a"></a-card>
   </PageWrapper>
 </template>
 
 <script>
 export default {
-  name: 'C2'
+  name: 'La1a'
 }
 </script>
 

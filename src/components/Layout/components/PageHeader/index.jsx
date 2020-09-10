@@ -25,11 +25,10 @@ export default defineComponent({
       breadcrumbList: [],
       newProps: {}
     })
-
     const initPageHeader = () => {
       const list = getParentRoute(route.path, propsState.menuList)
       state.breadcrumbList = list
-      const title = propsState?.title || list[list.length - 1].meta.title
+      const title = propsState?.title || route.meta.title
       const newProps = Object.assign({}, propsState, { title })
       state.newProps = newProps
     }
