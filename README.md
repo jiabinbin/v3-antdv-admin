@@ -10,8 +10,6 @@ UI库 ant-design-vue 2.*.beta版本(支持vue3)
 很感谢QQ群217490093中的帮助
 ```
 [访问地址](https://jiabinbin.github.io/v3-antdv-admin)
-因为没有登陆，默认是指向dashboard页 : (
-登陆会补的。不着急
 
 ## Project setup
 ```
