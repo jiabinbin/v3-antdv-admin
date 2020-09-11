@@ -16,7 +16,7 @@
     <a-layout class="layout-content">
       <Header
         :collapsed="collapsed"
-        :collapsedClick="triggerCollapsed"
+        :collapsedClick="changeCollapsed"
       ></Header>
       <a-layout-content>
         <router-view/>
@@ -29,38 +29,42 @@
 </template>
 
 <script>
-import { useBoolean } from '@/hooks/useBoolean/useBoolean'
-import { computed, ref } from 'vue'
+// import { useBoolean } from '@/hooks/useBoolean/useBoolean'
+import { computed, ref, defineComponent } from 'vue'
 import MenuList from './components/Menu.vue'
 import { useStore } from 'vuex'
 import Header from '@/components/Layout/components/Header'
+import { useToggle } from '@ant-design-vue/use'
 
-export default {
+export default defineComponent({
   name: 'CusBaseLayout',
   components: {
     MenuList,
     Header
   },
   setup (props, context) {
+    const [collapsed, { toggle: triggerCollapsed }] = useToggle()
     // 菜单 ref
     const menuRef = ref(null)
     const closeMenu = value => {
       menuRef.value.setOpenKeysByBoolean(value)
     }
-    // collapsed
-    // 之所以加个回调，因为得先得纵向收起展开的菜单之后，再横向收起。如果反过来了，就会闪一下展开的菜单！
-    const { boolean: collapsed, triggerBoolean: triggerCollapsed } = useBoolean(closeMenu)
     const store = useStore()
     const menuList = computed(() => store.state.app.menuList)
 
+    const changeCollapsed = () => {
+      // 切换前先收起 因为得先得纵向收起展开的菜单之后，再横向收起。如果反过来了，就会闪一下展开的菜单！
+      closeMenu(collapsed.value)
+      triggerCollapsed()
+    }
     return {
       menuList,
       menuRef,
       collapsed,
-      triggerCollapsed
+      changeCollapsed
     }
   }
-}
+})
 </script>
 
 <style scoped lang="less" vars="{ collapsed }">

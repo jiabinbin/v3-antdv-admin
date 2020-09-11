@@ -19,12 +19,17 @@
         <a-button type="primary" @click="turnTo('levelB2')">跳转3</a-button>
         <a-button type="primary" @click="turnTo('hideMenuPage')">这个页面不在菜单里</a-button>
       </a-space>
+      <div>
+        <p>Effect: {{test}}</p>
+        <a-button @click="toggle">AAA</a-button>
+      </div>
     </a-card>
   </PageWrapper>
 </template>
 
 <script>
 import { useRouter } from 'vue-router'
+import { useToggle } from '@ant-design-vue/use'
 export default {
   name: 'Dashboard',
   setup () {
@@ -34,8 +39,11 @@ export default {
         name: routeName
       })
     }
+    const [test, { toggle }] = useToggle()
     return {
-      turnTo
+      test,
+      turnTo,
+      toggle
     }
   }
 }

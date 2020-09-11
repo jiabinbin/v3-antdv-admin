@@ -1,4 +1,4 @@
-import { defineComponent, computed, getCurrentInstance, reactive } from 'vue'
+import { defineComponent, computed, getCurrentInstance } from 'vue'
 import CusPageHeader from '@/components/Layout/components/PageHeader'
 import { useStore } from 'vuex'
 import PageHeader from 'ant-design-vue/es/page-header/index'
@@ -21,7 +21,6 @@ export default defineComponent({
     const aPageHeaderProps = getDefaultProps(PageHeader.props, ctx)
 
     const store = useStore()
-    const propsState = reactive(props)
 
     const menuList = computed(() => store.state.app.menuList)
 
@@ -33,7 +32,7 @@ export default defineComponent({
           class={styles['page-wrapper']}
           {...aPageHeaderProps}
           menuList={menuList.value}
-          contentExtra={propsState.contentExtra}
+          contentExtra={props.contentExtra}
           v-slots={
             headerSlots
           }

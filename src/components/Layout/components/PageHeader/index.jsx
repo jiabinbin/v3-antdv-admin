@@ -20,16 +20,15 @@ export default defineComponent({
   },
   setup (props, { slots }) {
     const route = reactive(useRoute())
-    const propsState = reactive(props)
     const state = reactive({
       breadcrumbList: [],
       newProps: {}
     })
     const initPageHeader = () => {
-      const list = getParentRoute(route.path, propsState.menuList)
+      const list = getParentRoute(route.path, props.menuList)
       state.breadcrumbList = list
-      const title = propsState?.title || route.meta.title
-      const newProps = Object.assign({}, propsState, { title })
+      const title = props?.title || route.meta.title
+      const newProps = Object.assign({}, props, { title })
       state.newProps = newProps
     }
 
@@ -55,7 +54,7 @@ export default defineComponent({
         >
           {
             contentExtra ? contentExtra() : (
-              <div>{propsState.contentExtra}</div>
+              <div>{props.contentExtra}</div>
             )
           }
         </a-page-header>
